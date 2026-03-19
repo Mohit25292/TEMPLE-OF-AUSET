@@ -78,6 +78,50 @@ text-align:center;
 padding:35px;
 background:#f0f3ff;
 }
+.reviews {
+text-align:center;
+padding:50px 20px;
+}
+
+.review-box {
+max-width:650px;
+margin:auto;
+padding:30px;
+background:white;
+border-radius:16px;
+box-shadow:0 12px 35px rgba(0,0,0,0.08);
+}
+
+.review-box p {
+font-style:italic;
+font-size:17px;
+line-height:1.6;
+transition:opacity 0.4s ease;
+}
+
+.review-box h4 {
+margin-top:15px;
+color:#666;
+font-weight:normal;
+}
+
+.review-controls {
+margin-top:20px;
+}
+
+.review-controls button {
+padding:10px 14px;
+margin:5px;
+border:none;
+border-radius:10px;
+background:#6b4cff;
+color:white;
+cursor:pointer;
+}
+
+.review-controls button:hover {
+background:#4a32cc;
+}
 </style>
 </head>
 <body>
@@ -130,7 +174,22 @@ The cards act as a mirror to your inner world, offering clarity, direction, and 
 <p><strong>✨ ₹111</strong> — Additional 15 Minutes</p>
 </div>
 </div>
+<!-- REVIEWS -->
+<div class="card reviews">
+<h2>Client Experiences</h2>
 
+<div class="review-box">
+  <p id="review-text">
+    I appreciate the guidance shared, especially about being mindful in spiritual choices. The reader gave thoughtful advice about not choosing blindly, which I appreciated.
+  </p>
+  <h4 id="review-name">— Aman Singh</h4>
+</div>
+
+<div class="review-controls">
+  <button onclick="prevReview()">←</button>
+  <button onclick="nextReview()">→</button>
+</div> 
+</div>
 <!-- MAIN COURSE -->
 <div class="card">
 <img class="banner" src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1600&q=80" alt="egypt hieroglyphs">
@@ -214,7 +273,7 @@ This is the path of the awakened heart.
 <!-- CONTACT -->
 <div class="card">
 <h2>Contact The Society</h2>
-<p>Email: work.emailm13@gmail.com</p>
+<p>Email: blessedstarsociety@email.com</p>
 <p>Instagram: @blessedstarsociety</p>
 </div>
 
@@ -224,6 +283,48 @@ This is the path of the awakened heart.
 <p>© Blessed Star Society</p>
 <p>Dedicated to study, wisdom and the light of knowledge</p>
 </footer>
+<script>
+const reviews = [
+{
+text: "I appreciate the guidance shared, especially about being mindful in spiritual choices. The reader gave thoughtful advice about not choosing blindly, which I appreciated.",
+name: "— Aman Singh"
+},
+{
+text: "The reading was incredibly accurate, it helped with my complex personal situation, Mohit explained the cards thoroughly like a story, it was incredible to even experience divination! I would absolutely recommend him to everyone but you might need a little understanding as his poetic representation of the cards is a bit tricky.",
+name: "— Pratham Rakhecha"
+},
+{
+text: "I am so happy! you have given me the right reading, you have explained with such simplicity! love you so much. Thanks for guiding on my path of love!",
+name: "— Yerik Abrol"
+}
+];
 
+let index = 0;
+
+function showReview(i){
+const text = document.getElementById("review-text");
+const name = document.getElementById("review-name");
+
+text.style.opacity = 0;
+
+setTimeout(()=>{
+text.innerText = reviews[i].text;
+name.innerText = reviews[i].name;
+text.style.opacity = 1;
+},200);
+}
+
+function nextReview(){
+index = (index + 1) % reviews.length;
+showReview(index);
+}
+
+function prevReview(){
+index = (index - 1 + reviews.length) % reviews.length;
+showReview(index);
+}
+
+setInterval(nextReview, 5000);
+</script>
 </body>
 </html>
